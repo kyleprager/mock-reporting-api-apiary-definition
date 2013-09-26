@@ -1,0 +1,204 @@
+HOST: http://10.1.10.92:3000
+
+--- Reporting API ---
+
+---
+Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
+---
+
+--
+Event related routes
+The following is a section of routes related to events
+--
+
+Get a list of all events over a period of time
+GET /events/list
+< 200
+< Content-Type: application/json
+[
+  {
+    "timestamp": "2013-09-25T18:08:30.255Z",
+    "pixelId": 94026,
+    "uuid": "bf36c8b5-c40d-4868-817a-d50f44bc3c2f",
+    "ip": "127.0.0.1",
+    "geo": "geo-value",
+    "value": "user-defined-value-assigned-to-pixel",
+    "ecpi": "ecpi-value",
+    "channel": "channel-value",
+    "vendor": "vendor-value"
+  },
+  {
+    "timestamp": "2013-09-25T18:08:30.255Z",
+    "pixelId": 62302,
+    "uuid": "9e258be6-8558-4c73-9f32-0f244a245767",
+    "ip": "127.0.0.1",
+    "geo": "geo-value",
+    "value": "user-defined-value-assigned-to-pixel",
+    "ecpi": "ecpi-value",
+    "channel": "channel-value",
+    "vendor": "vendor-value"
+  }
+]
+
+Get a list of events for a given pixelId
+GET /events/bypixelid
+< 200
+< Content-Type: application/json
+[
+  {
+    "pixelId": 85167,
+    "label": "label-value",
+    "impressions": 47195,
+    "visitors": 4898,
+    "avgImpressionsPerVisitor": 9.635565536953859,
+    "value": 15,
+    "cost": 28,
+    "roi": 0.5357142857142857,
+    "channels": 14,
+    "vendors": 13,
+    "vendor": "vendor-value",
+    "vendorList": "a,b,c,d,e,f,g",
+    "geoCountriesCount": 9,
+    "geoStateRegionCount": 12
+  },
+  {
+    "pixelId": 85167,
+    "label": "label-value",
+    "impressions": 19402,
+    "visitors": 1679,
+    "avgImpressionsPerVisitor": 11.555687909469922,
+    "value": 69,
+    "cost": 57,
+    "roi": 1.2105263157894737,
+    "channels": 3,
+    "vendors": 5,
+    "vendor": "vendor-value",
+    "vendorList": "a,b,c,d,e,f,g",
+    "geoCountriesCount": 5,
+    "geoStateRegionCount": 15
+  }
+]
+
+Get a list of events for a given visitor uuid
+GET /events/byvisitoruuid
+< 200
+< Content-Type: application/json
+{ "deployments": [
+[
+  {
+    "uuid": "42973e48-c28e-40fe-98d0-9147f17d04b2",
+    "label": "label-value",
+    "impressions": 48574,
+    "pixels": 161,
+    "avgImpressionsPerPixel": 301.70186335403724,
+    "value": 41,
+    "cost": 98,
+    "roi": 0.41836734693877553,
+    "lastImpression": "2013-09-25T20:53:54.269Z",
+    "geoCountriesCount": 9,
+    "geoCountriesList": "country-0,country-1,country-2,country-3,country-4,country-5,country-6,country-7,country-8",
+    "geoStateRegionCount": 4,
+    "geoStateRegionList": "country-0,country-1,country-2,country-3"
+  },
+  {
+    "uuid": "42973e48-c28e-40fe-98d0-9147f17d04b2",
+    "label": "label-value",
+    "impressions": 7541,
+    "pixels": 1182,
+    "avgImpressionsPerPixel": 6.379864636209814,
+    "value": 94,
+    "cost": 170,
+    "roi": 0.5529411764705883,
+    "lastImpression": "2013-09-25T20:53:54.269Z",
+    "geoCountriesCount": 2,
+    "geoCountriesList": "country-0,country-1",
+    "geoStateRegionCount": 8,
+    "geoStateRegionList": "country-0,country-1,country-2,country-3,country-4,country-5,country-6,country-7"
+  }
+]
+
+Get a summary of events over time (frequency)
+GET /events/byFrequencySummary
+< 200
+< Content-Type: application/json
+{
+  "label": "label-value",
+  "impressions": 31241,
+  "pixels": 414,
+  "avgImpressionsPerPixel": 75.46135265700484,
+  "value": 48,
+  "cost": 84,
+  "roi": 0.5714285714285714,
+  "lastImpression": "2013-09-25T20:43:28.526Z",
+  "geoCountriesCount": 9,
+  "geoCountriesList": "country-0,country-1,country-2,country-3,country-4,country-5,country-6,country-7,country-8",
+  "geoStateRegionCount": 6,
+  "geoStateRegionList": "country-0,country-1,country-2,country-3,country-4,country-5",
+  "channelsCount": 9,
+  "channelsList": "channel-0,channel-1,channel-2,channel-3,channel-4,channel-5,channel-6,channel-7,channel-8",
+  "vendorsCount": 8,
+  "vendorsList": "vendor-0,vendor-1,vendor-2,vendor-3,vendor-4,vendor-5,vendor-6,vendor-7"
+}
+
+Get the details of an event on a frequency report
+GET /events/byFrequencyDetails
+< 200
+< Content-Type: application/json
+{
+  "date": "2013-09-25T20:43:31.533Z",
+  "value": 12345,
+  "cost": 12345,
+  "roi": 12345,
+  "channel": "channel-value",
+  "vendor": "vendor-value",
+  "geoCountry": "country-value",
+  "geoStateRegion": "stateRegion-value"
+}
+
+Get a summary of events by channel
+GET /events/byChannelSummary
+< 200
+< Content-Type: application/json
+{
+  "label": "label-value",
+  "impressions": 45058,
+  "pixels": 4583,
+  "avgImpressionsPerPixel": 9.831551385555313,
+  "value": 41,
+  "cost": 53,
+  "roi": 0.7735849056603774,
+  "lastImpression": "2013-09-25T20:43:14.944Z",
+  "geoCountriesCount": 7,
+  "geoCountriesList": "country-0,country-1,country-2,country-3,country-4,country-5,country-6",
+  "geoStateRegionCount": 10,
+  "geoStateRegionList": "country-0,country-1,country-2,country-3,country-4,country-5,country-6,country-7,country-8,country-9",
+  "channelsCount": 1,
+  "channelsList": "channel-0",
+  "vendorsCount": 1,
+  "vendorsList": "vendor-0",
+  "channel": "channel-value"
+}
+
+Get a detailed view of an event on the channel summary view
+GET /events/byChannelDetails
+< 200
+< Content-Type: application/json
+{
+  "label": "label-value",
+  "vendor": "vendor-value",
+  "channel": "channel-value",
+  "impressions": 8109,
+  "pixels": 1460,
+  "avgImpressionsPerPixel": 5.554109589041096,
+  "value": 79,
+  "cost": 147,
+  "roi": 0.5374149659863946,
+  "geoCountriesCount": 1,
+  "geoCountriesList": "country-0",
+  "geoStateRegionCount": 8,
+  "geoStateRegionList": "country-0,country-1,country-2,country-3,country-4,country-5,country-6,country-7",
+  "channelsCount": 8,
+  "channelsList": "channel-0,channel-1,channel-2,channel-3,channel-4,channel-5,channel-6,channel-7",
+  "vendorsCount": 6,
+  "vendorsList": "vendor-0,vendor-1,vendor-2,vendor-3,vendor-4,vendor-5"
+}
